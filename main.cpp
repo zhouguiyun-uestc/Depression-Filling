@@ -75,6 +75,8 @@ void calculateStatistics(const CDEM& dem, double* min, double* max, double* mean
 	*mean = meanValue;
 	*stdDev = stdDevValue;
 }
+
+//generate DEM with Perlin Noise 
 void createPerlinNoiseDEM(char* outputFilePath,int rows,int cols){
 	CDEM dem;
 	float fre=(float)randomi(0,512)/10;
