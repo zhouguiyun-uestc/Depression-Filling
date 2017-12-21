@@ -80,7 +80,6 @@ void calculateStatistics(const CDEM& dem, double* min, double* max, double* mean
 void createPerlinNoiseDEM(char* outputFilePath,int rows,int cols){
 	CDEM dem;
 	float fre=(float)randomi(0,512)/10;
-	double geoTransformArgs[6]={244730,3,0,5113198,0,-3};
 	dem.SetHeight(rows);
 	dem.SetWidth(cols);
 	if (!dem.Allocate()) {
@@ -96,7 +95,7 @@ void createPerlinNoiseDEM(char* outputFilePath,int rows,int cols){
 	double min, max, mean, stdDev;
 	calculateStatistics(dem, &min, &max, &mean, &stdDev);
 	CreateGeoTIFF(outputFilePath, dem.Get_NY(), dem.Get_NX(), 
-		(void *)dem.getDEMdata(),GDALDataType::GDT_Float32, geoTransformArgs,
+		(void *)dem.getDEMdata(),GDALDataType::GDT_Float32, NULL,
 		&min, &max, &mean, &stdDev, -9999);
 	std::cout << "create dem successfully!" << std::endl;
     return;
@@ -105,11 +104,11 @@ void createPerlinNoiseDEM(char* outputFilePath,int rows,int cols){
 int main(int argc, char* argv[])
 {
 	if (argc<4){
-		cout<<"This program fills depressions in DEMs using our proposed algorithm. It can also generate DEMs with large depressions using Perlin noise method."<<endl;
-		cout<<"\ncreatePerlinNoiseDEM usage\n : fill perlinDEM rows cols dem.tif. This command generates a DEM of with given rows and cols. "<<endl;
-		cout<<"\nFor example, fill perlinDEM 100 100 dem.tif"<<endl;
-		cout<<"\nfillDEM usage\n: fill fillDEM inputFilePath outputfilePath.This command fills depressions in DEM"<<endl;
-		cout<<"\nFor example, fill fillDEM dem.tif demfilled.tif"<<endl;
+		cout<<"\nThis program fills depressions in DEMs using our proposed algorithm. It can also generate DEMs with large depressions using Perlin noise method."<<endl;
+		cout<<"\n\nTo create a DEM with Perlin noise method, use the following command:\nfill perlinDEM rows cols dem.tif \nThis command generates a Perlin noise DEM with given rows and cols. "<<endl;
+		cout<<"\nExample usage:, ./fill perlinDEM 100 100 dem.tif"<<endl;
+		cout<<"\n\nTo fill a DEM using our proposed method, use the following command:\nfill fillDEM inputFilePath outputfilePath.\nThis command fills depressions in the given DEM"<<endl;
+		cout<<"\nExample usage: ./fill fillDEM dem.tif demfilled.tif"<<endl;
 		return 1;
 	}
 	char* function=argv[1];
@@ -134,4 +133,5 @@ int main(int argc, char* argv[])
 	}
 	return 0;
 }
+
 
