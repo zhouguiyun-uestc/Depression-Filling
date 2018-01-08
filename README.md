@@ -1,4 +1,5 @@
-Title: Efficient Priority-Flood depression filling in raster digital elevation models
+# Depression filling
+**Manuscript Title**:Efficient Priority-Flood depression filling in raster digital elevation models
 
 This repository contains the source codes of the algorithm presented in the manuscript above. These codes were used in performing the tests described in the manuscript.
 
@@ -10,7 +11,7 @@ The algorithms described in the manuscript can be run using the following comman
 
 fill fillDEM Input_DEM Output_DEM
 
-Example: ./fill fillDEM dem.tif. dem_filled.tif
+**Example**: ./fill fillDEM dem.tif. dem_filled.tif
 
 Use the algorithm proposed in the manuscript to fill the input DEM "dem.tif" and create a filled DEM "dem_filled.tif".
 
@@ -20,6 +21,6 @@ This function can be run using the following command line:
 
 fill perlinDEM rows cols dem.tif
 
-Example: ./fill perlinDEM 100 100 dem.tif
+**Example**: ./fill perlinDEM 100 100 dem.tif
  
 The test data used in the manuscript can be downloaded at http://www.mngeo.state.mn.us. You need ArcGIS to convert the DEM into GeoTIFF format.
