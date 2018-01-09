@@ -1,12 +1,12 @@
 IDIR =.
-CC=g++
+CC=g++ `gdal-config --cflags` `gdal-config --libs`
 
 #Compilation flags. Feel free to add optimization options here
 CFLAGS=-I$(IDIR) --std=c++11 -fpermissive -O3 
 
 ODIR=.
 
-LIBS=-lm -lgdal 
+LIBS=-lm
 
 _DEPS = Node.h dem.h utils.h perlin.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
